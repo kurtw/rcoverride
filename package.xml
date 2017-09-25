@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>rcoverride</name>
+  <version>0.0.0</version>
+  <description>The rcOverride package for snappy_mavros</description>
+
+  <maintainer email="waage@todo.todo">waage</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>mavros_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>mavros_msgs</run_depend>
+</package>
