@@ -7,11 +7,11 @@
 #include <mavros_msgs/ParamSet.h>
 #include <mavros_msgs/ParamGet.h>
 
-//must set
+//
 int main(int argc, char **argv)
 {
     if(argc<6){
-        printf("Usage: rosrun rcoverride rc throttle yaw forward lateral cam\n"); //Input pwm values. 1100 = full reverse, 1500 = neutral, 1950 = full forward
+        printf("Usage: rosrun rcoverride rc THROTTLE YAW FORWARD LATERAL CAM\n"); //Input pwm values. 1100 = full reverse, 1500 = neutral, 1950 = full FORWARD
         return -1;
     }
 
@@ -19,18 +19,18 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     //String to integer -- for PWM input mapping
-    int throttle  =   atoi(argv[1]);
-    int yaw       =   atoi(argv[2]);
-    int forward   =   atoi(argv[3]);
-    int lateral   =   atoi(argv[4]);
-    int cam       =   atoi(argv[5]);
+    int THROTTLE  =   atoi(argv[1]);
+    int YAW       =   atoi(argv[2]);
+    int FORWARD   =   atoi(argv[3]);
+    int LATERAL   =   atoi(argv[4]);
+    int CAM       =   atoi(argv[5]);
 
     //Display PWM values
-    ROS_INFO_STREAM("Throttle: " << throttle);
-    ROS_INFO_STREAM("Yaw: " << yaw);
-    ROS_INFO_STREAM("Forward: " << forward);
-    ROS_INFO_STREAM("Lateral: " << lateral);
-    ROS_INFO_STREAM("Cam: " << cam);
+    ROS_INFO_STREAM("THROTTLE: " << THROTTLE);
+    ROS_INFO_STREAM("YAW: " << YAW);
+    ROS_INFO_STREAM("FORWARD: " << FORWARD);
+    ROS_INFO_STREAM("LATERAL: " << LATERAL);
+    ROS_INFO_STREAM("CAM: " << CAM);
 
     int rate = 100;
     ros::Rate r(rate);
@@ -78,12 +78,12 @@ int main(int argc, char **argv)
     while (ros::ok()){
         msg_override.channels[0] = 1500;
         msg_override.channels[1] = 1500;
-        msg_override.channels[2] = throttle; //moves vehcile up and down
-        msg_override.channels[3] = yaw;
-        msg_override.channels[4] = forward;
-        msg_override.channels[5] = lateral;
+        msg_override.channels[2] = THROTTLE; //moves vehcile up and down
+        msg_override.channels[3] = YAW;
+        msg_override.channels[4] = FORWARD;
+        msg_override.channels[5] = LATERAL;
         msg_override.channels[6] = 0;
-        msg_override.channels[7] = cam;
+        msg_override.channels[7] = CAM;
 
         rc_override_pub.publish(msg_override);
         ros::spinOnce();
